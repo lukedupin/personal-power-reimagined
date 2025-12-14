@@ -1,4 +1,4 @@
-data:extend {
+data:extend( {
 	{
 		type = "generator-equipment",
 		name = "personal-power-burner",
@@ -76,9 +76,9 @@ data:extend {
 		},
 		results = {{type = "item", name = "personal-power-burner", amount = 1}},
 	}
-}
+})
 
-data:extend {
+data:extend( {
 	{
 		type = "generator-equipment",
 		name = "personal-power-nuclear",
@@ -143,7 +143,7 @@ data:extend {
 		},
 		results = {{type = "item", name = "personal-power-nuclear", amount = 1}},
 	}
-}
+})
 
 data:extend {
 	{
@@ -192,11 +192,11 @@ data:extend {
 		subgroup = "equipment",
 		order = "a[energy-source]-0[personal-power-fusion]",
 		stack_size = 20,
-		drop_sound = data.raw.item["fusion-reactor"].drop_sound,
-		open_sound = data.raw.item["fusion-reactor"].open_sound,
-		pick_sound = data.raw.item["fusion-reactor"].pick_sound,
-		close_sound = data.raw.item["fusion-reactor"].close_sound,
-		inventory_move_sound = data.raw.item["fusion-reactor"].inventory_move_sound,
+		drop_sound = data.raw.item["nuclear-reactor"].drop_sound,
+		open_sound = data.raw.item["nuclear-reactor"].open_sound,
+		pick_sound = data.raw.item["nuclear-reactor"].pick_sound,
+		close_sound = data.raw.item["nuclear-reactor"].close_sound,
+		inventory_move_sound = data.raw.item["nuclear-reactor"].inventory_move_sound,
 	}, {
 		type = "recipe",
 		name = "personal-power-fusion",
@@ -209,64 +209,62 @@ data:extend {
 			{type = "item", name = "quantum-processor", amount = 5},
 		},
 		results = {{type = "item", name = "personal-power-fusion", amount = 1}},
-	}
+	},
+    {
+        type = "technology",
+        name = "personal-power-burner",
+        icon = "__personal-power-reimagined__/graphics/burner-tech.png",
+        icon_size = 256,
+        essential = true,
+        effects = {
+          {
+            type = "unlock-recipe",
+            recipe = "personal-power-burner"
+          }
+        },
+        prerequisites = {
+          "modular-armor",
+        },
+        unit = {
+          count = 200,
+          ingredients =
+          {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+          },
+          time = 60
+        }
+    },
+    {
+        type = "technology",
+        name = "personal-power-nuclear",
+        icon = "__personal-power-reimagined__/graphics/nuclear-tech.png",
+        icon_size = 256,
+        essential = true,
+        effects = {
+          {
+            type = "unlock-recipe",
+            recipe = "personal-power-nuclear"
+          }
+        },
+        prerequisites = {
+          "modular-armor",
+          "nuclear-power",
+        },
+        unit = {
+          count = 400,
+          ingredients =
+          {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+          },
+          time = 60
+        }
+    }
 }
 
-data.extend({
-	type = "technology",
-	name = "personal-power-burner",
-	icon = "__personal-power-reimagined__/graphics/personal-power-burner-tech.png",
-	icon_size = 256,
-	essential = true,
-	effects = {
-	  {
-		type = "unlock-recipe",
-		recipe = "personal-power-burner"
-	  }
-	},
-	prerequisites = {
-	  "modular-armor",
-	},
-	unit = {
-	  count = 200,
-	  ingredients =
-	  {
-		{"automation-science-pack", 1},
-		{"logistic-science-pack", 1},
-	  },
-	  time = 60
-	}
-})
-
-data.extend({
-	type = "technology",
-	name = "personal-power-nuclear",
-	icon = "__personal-power-reimagined__/graphics/personal-power-nuclear-tech.png",
-	icon_size = 256,
-	essential = true,
-	effects = {
-	  {
-		type = "unlock-recipe",
-		recipe = "personal-power-nuclear"
-	  }
-	},
-	prerequisites = {
-	  "modular-armor",
-	  "nuclear-power",
-	},
-	unit = {
-	  count = 400,
-	  ingredients =
-	  {
-		{"automation-science-pack", 1},
-		{"logistic-science-pack", 1},
-		{"chemical-science-pack", 1},
-	  },
-	  time = 60
-	}
-})
-
 local tech = data.raw.technology["fusion-reactor"]
-if tech != nil then
+if tech ~= nil then
 	table.insert(tech.effects, {type = "unlock-recipe", recipe = "personal-power-fusion"})
 end
