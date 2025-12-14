@@ -71,8 +71,8 @@ data:extend( {
 		ingredients =
 		{
 			{type = "item", name = "copper-cable", amount = 8},
-			{type = "item", name = "steel-plate", amount = 20},
-			{type = "item", name = "advanced-circuit", amount = 2},
+			{type = "item", name = "pipe", amount = 20},
+			{type = "item", name = "electronic-circuit", amount = 10},
 		},
 		results = {{type = "item", name = "personal-power-burner", amount = 1}},
 	}
@@ -139,7 +139,7 @@ data:extend( {
 		{
 			{type = "item", name = "copper-cable", amount = 20},
 			{type = "item", name = "steel-plate", amount = 40},
-			{type = "item", name = "processing-unit", amount = 2},
+			{type = "item", name = "advanced-circuit", amount = 10},
 		},
 		results = {{type = "item", name = "personal-power-nuclear", amount = 1}},
 	}
@@ -232,7 +232,7 @@ data:extend {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
           },
-          time = 60
+          time = 10
         }
     },
     {
@@ -253,14 +253,14 @@ data:extend {
           "personal-power-burner",
         },
         unit = {
-          count = 400,
+          count = 350,
           ingredients =
           {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
           },
-          time = 60
+          time = 30
         }
     },
     {
