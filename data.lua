@@ -53,7 +53,7 @@ data:extend( {
 		type = "item",
 		name = "personal-power-burner",
 		icon = "__personal-power-reimagined__/graphics/burner-item.png",
-		icon_size = 64,
+		icon_size = 256,
 		place_as_equipment_result = "personal-power-burner",
 		subgroup = "equipment",
 		order = "a[energy-source]-0[personal-power-burner]",
@@ -120,7 +120,7 @@ data:extend( {
 		type = "item",
 		name = "personal-power-nuclear",
 		icon = "__personal-power-reimagined__/graphics/nuclear-item.png",
-		icon_size = 64,
+		icon_size = 256,
 		place_as_equipment_result = "personal-power-nuclear",
 		subgroup = "equipment",
 		order = "a[energy-source]-0[personal-power-nuclear]",
@@ -187,7 +187,7 @@ data:extend {
 		type = "item",
 		name = "personal-power-fusion",
 		icon = "__personal-power-reimagined__/graphics/fusion-item.png",
-		icon_size = 64,
+		icon_size = 256,
 		place_as_equipment_result = "personal-power-fusion",
 		subgroup = "equipment",
 		order = "a[energy-source]-0[personal-power-fusion]",
@@ -250,6 +250,7 @@ data:extend {
         prerequisites = {
           "modular-armor",
           "nuclear-power",
+          "personal-power-burner",
         },
         unit = {
           count = 400,
@@ -261,10 +262,39 @@ data:extend {
           },
           time = 60
         }
+    },
+    {
+        type = "technology",
+        name = "personal-power-fusion",
+        icon = "__personal-power-reimagined__/graphics/fusion-tech.png",
+        icon_size = 256,
+        essential = true,
+        effects = {
+          {
+            type = "unlock-recipe",
+            recipe = "personal-power-fusion"
+          }
+        },
+        prerequisites = {
+          "modular-armor",
+          "fusion-reactor",
+          "personal-power-burner",
+        },
+        unit = {
+          count = 400,
+          ingredients =
+          {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1},
+            {"metallurgic-science-pack", 1},
+            {"agricultural-science-pack", 1},
+            {"cryogenic-science-pack", 1},
+          },
+          time = 60
+        }
     }
 }
-
-local tech = data.raw.technology["fusion-reactor"]
-if tech ~= nil then
-	table.insert(tech.effects, {type = "unlock-recipe", recipe = "personal-power-fusion"})
-end
